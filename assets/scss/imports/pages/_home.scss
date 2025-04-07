@@ -1,0 +1,178 @@
+/* -------------------------------------------------------------------------- */
+/*                                  home page                                 */
+/* -------------------------------------------------------------------------- */
+
+.homepage {
+  [data-offset-top] {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+  }
+
+  // ===== top =====
+  .top {
+    &_container {
+      position: relative;
+      overflow: hidden;
+      padding-top: 238px;
+      background: linear-gradient(
+        to bottom,
+        #f4eee6 0%,
+        #ecb0ba 80%,
+        #ecb0ba 100%
+      );
+
+      @include maxW(1023px) {
+        padding-top: 192px;
+      }
+    }
+
+    &_line {
+      position: absolute;
+      top: 100px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(1.05);
+      width: 100%;
+      min-width: 1558px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.2;
+
+      .topl2 {
+        transform: translate(0, -20%);
+      }
+
+      @include maxW(1023px) {
+        top: 280px;
+        width: 100%;
+        min-width: 100%;
+
+        .topl1 {
+          width: 140%;
+          transform: translate(-12.5%, 0) rotate(-9deg);
+        }
+
+        .topl2 {
+          width: 154%;
+          transform: translate(-28.5%, 55%);
+        }
+      }
+    }
+
+    &_chacott {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      margin-top: 230px;
+      z-index: 2;
+
+      &_inner {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+
+        p {
+          font-size: 2rem;
+          font-weight: 500;
+        }
+      }
+
+      &_logo {
+        margin-top: 28px;
+      }
+
+      @include maxW(1023px) {
+        margin-top: 200px;
+
+        &_inner {
+          left: 51.5%;
+          top: 48%;
+          
+          p {
+            font-size: 1.5rem;
+          }
+        }
+
+        &_logo {
+          margin-top: 18px;
+
+          svg {
+            width: 151.71px;
+            height: auto;
+          }
+        }
+      }
+    }
+
+    &_content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+
+      .txt {
+        margin-bottom: 80px;
+        font-size: 1.9rem;
+        font-weight: 500;
+        letter-spacing: -0.72px;
+        line-height: 3.3;
+
+        &:last-child {
+          margin-bottom: initial;
+        }
+      }
+
+      @include maxW(1023px) {
+        .txt {
+          margin-bottom: 38px;
+          font-size: 1.4rem;
+          letter-spacing: -0.56px;
+          line-height: 2.55;
+        }
+      }
+    }
+  }
+
+  // ===== anni ====
+  .anni {
+    &_container {
+      position: relative;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background-color: $main-bg-cl;
+      margin-top: 500px;
+    }
+
+    &_logo {
+      position: sticky;
+      top: 0;
+      padding-top: 25px;
+      padding-left: 30px;
+      z-index: 2;
+
+      @include maxW(1023px) {
+        padding-top: 15px;
+        padding-left: 20px;
+
+        svg {
+          width: 134.13px;
+          height: auto;
+        }
+      }
+    }
+
+    &_content {
+      flex: 1;
+      padding: 0 30px;
+      margin-top: 217px;
+
+      @include maxW(1023px) {
+        padding: 0 20px;
+        margin-top: 160px;
+      }
+    }
+  }
+}

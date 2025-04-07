@@ -1,0 +1,46 @@
+/* Header
+------------------------------------------------------------*/
+
+.c-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  &_logo {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+
+    @include maxW(1023px) {
+      top: 20px;
+
+      svg {
+        width: 134.13px;
+        height: auto;
+      }
+    }
+  }
+
+  &_left {
+    padding-top: 25px;
+    padding-left: 30px;
+
+    a {
+      width: fit-content;
+    }
+
+    @include maxW(1023px) {
+      padding-top: 15px;
+      padding-left: 20px;
+
+      svg {
+        width: 134.13px;
+        height: auto;
+      }
+    }
+  }
+}
