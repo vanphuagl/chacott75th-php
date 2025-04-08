@@ -59,11 +59,13 @@
                         <a href="/75th/#list">記事一覧に戻る</a>
                     </div>
                 </div>
+                <?php if (!empty($related_articles)): ?>
                 <div class="detail_related">
                     <div class="detail_articles">
                         <?php include('../components/related-articles.php') ?>
                     </div>
                 </div>
+                <?php endif; ?>
             </div>
         </section>
         <!-- detail// -->
