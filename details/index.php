@@ -1,5 +1,5 @@
 <?php
-    require_once '../data.php';
+    require_once __DIR__ . '/../data.php';
     $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
     if (isset($posts[$id])) {
@@ -34,7 +34,7 @@
     $ogimg_page = $thumb_articles;
 ?>
 
-<?php include('../components/header.php') ?>
+<?php require __DIR__ . '/../components/header.php' ?>
 
     <!-- @main -->
     <main class="detailspage" id="detailspage">
@@ -62,7 +62,7 @@
                 <?php if (!empty($related_articles)): ?>
                 <div class="detail_related">
                     <div class="detail_articles">
-                        <?php include('../components/related-articles.php') ?>
+                        <?php require __DIR__ . '/../components/related-articles.php' ?>
                     </div>
                 </div>
                 <?php endif; ?>
@@ -72,6 +72,6 @@
     </main>
     <!-- @@main -->
 
-<?php include('../components/footer.php') ?>
+<?php require __DIR__ . '/../components/footer.php' ?>
 
-<?php include('../components/endtag.php') ?>
+<?php require __DIR__ . '/../components/endtag.php' ?>

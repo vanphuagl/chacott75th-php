@@ -1,5 +1,5 @@
     <?php
-        require_once '../data.php';
+        require_once __DIR__ . '/../data.php';
         $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
         if (isset($posts[$id])) {
             $related_ids = $posts[$id]['related_articles'] ?? [];
