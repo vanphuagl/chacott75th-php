@@ -148,28 +148,7 @@ const scrollEvents = () => {
       });
       // scroll fixed logo show/hide scrolldown
       if (isMobile) {
-        ScrollTrigger.create({
-          trigger: "[data-top-chacott]",
-          start: "bottom bottom",
-          end: "bottom bottom",
-          markers: false,
-          invalidateOnRefresh: true,
-          onEnter: () => {
-            gsap.to("[data-scrolldown]", {
-              opacity: 1,
-              duration: 0.2,
-            });
-          },
-          onEnterBack: () => {
-            gsap.to("[data-scrolldown]", {
-              opacity: 0,
-              duration: 0.2,
-            });
-          },
-        });
-      }
-      // scroll sticky anni logo
-      if (isMobile) {
+        // scroll sticky anni logo
         gsap.to(".anni_logo", {
           scrollTrigger: {
             trigger: ".anni",
@@ -182,6 +161,28 @@ const scrollEvents = () => {
     }
   );
 };
+
+if (window.innerWidth < 1024) {
+  ScrollTrigger.create({
+    trigger: "[data-top-chacott]",
+    start: "bottom bottom",
+    end: "bottom bottom",
+    markers: false,
+    invalidateOnRefresh: true,
+    onEnter: () => {
+      gsap.to("[data-scrolldown]", {
+        opacity: 1,
+        duration: 0.2,
+      });
+    },
+    onEnterBack: () => {
+      gsap.to("[data-scrolldown]", {
+        opacity: 0,
+        duration: 0.2,
+      });
+    },
+  });
+}
 
 // ===== scroll fade up content =====
 const [fadeInArray] = [document.querySelectorAll("[data-fadein]")];
@@ -202,31 +203,6 @@ const addFadeOnElements = function (elements) {
     addFadeOnElements(fadeInArray)
   });
 });
-
-// ===== scroll fixed section footer =====
-// const hideLogoShrink = gsap.timeline({
-//   scrollTrigger: {
-//     trigger: "[data-top-chacott]",
-//     start: "top+=10% center",
-//     end: "top+=10% center",
-//     markers: false,
-//     invalidateOnRefresh: true,
-//     onEnter: () => {
-//       gsap.to("[data-logo-shrink]", {
-//         opacity: 0,
-//         duration: 1,
-//         ease: Power4.easeInOut,
-//       });
-//     },
-//     onEnterBack: () => {
-//       gsap.to("[data-logo-shrink]", {
-//         opacity: 1,
-//         duration: 1,
-//         ease: Power4.easeInOut,
-//       });
-//     },
-//   },
-// });
 
 let panels = gsap.utils.toArray("[data-section]");
 panels.pop(); // get rid of the last one (don't need it in the loop)
@@ -322,7 +298,7 @@ const handleHash = function () {
             );
             setTimeout(() => {
               document.body.classList.remove("fadeout");
-            }, 100);
+            }, 200);
           },
         });
       }
