@@ -1,7 +1,7 @@
 "use strict";
 
 const init = () => {
-  // console.clear();
+  console.clear();
   // gsap config
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
   ScrollTrigger.clearScrollMemory("manual");
@@ -204,29 +204,29 @@ const addFadeOnElements = function (elements) {
 });
 
 // ===== scroll fixed section footer =====
-const hideLogoShrink = gsap.timeline({
-  scrollTrigger: {
-    trigger: "[data-top-chacott]",
-    start: "top+=10% center",
-    end: "top+=10% center",
-    markers: false,
-    invalidateOnRefresh: true,
-    onEnter: () => {
-      gsap.to("[data-logo-shrink]", {
-        opacity: 0,
-        duration: 1,
-        ease: Power4.easeInOut,
-      });
-    },
-    onEnterBack: () => {
-      gsap.to("[data-logo-shrink]", {
-        opacity: 1,
-        duration: 1,
-        ease: Power4.easeInOut,
-      });
-    },
-  },
-});
+// const hideLogoShrink = gsap.timeline({
+//   scrollTrigger: {
+//     trigger: "[data-top-chacott]",
+//     start: "top+=10% center",
+//     end: "top+=10% center",
+//     markers: false,
+//     invalidateOnRefresh: true,
+//     onEnter: () => {
+//       gsap.to("[data-logo-shrink]", {
+//         opacity: 0,
+//         duration: 1,
+//         ease: Power4.easeInOut,
+//       });
+//     },
+//     onEnterBack: () => {
+//       gsap.to("[data-logo-shrink]", {
+//         opacity: 1,
+//         duration: 1,
+//         ease: Power4.easeInOut,
+//       });
+//     },
+//   },
+// });
 
 let panels = gsap.utils.toArray("[data-section]");
 panels.pop(); // get rid of the last one (don't need it in the loop)
@@ -357,4 +357,4 @@ if (document.getElementById("detailspage")) {
 }
 
 // DOMContentLoaded
-window.addEventListener("pageshow", init);
+window.addEventListener("load", init);
