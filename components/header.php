@@ -2,6 +2,22 @@
 <html lang="ja">
 
 <head>
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-W4WTB89');</script>
+	<!-- End Google Tag Manager -->
+	
+	<!-- Google Tag Manager for develop -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-NT6597D');</script>
+	<!-- End Google Tag Manager for develop -->
+
     <?php
         $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
         $domain = $_SERVER['HTTP_HOST']; // localhost, yourdomain.com
@@ -12,7 +28,7 @@
 		$titlePage = 'Chacott 75th Anniversary';
 		if(isset($title_page)){
 			$titlePage = strip_tags($title_page). ' ｜ ' . $titlePage;
-            $descPage = $titlePage;
+            $descPage = strip_tags($title_page);
 		} else {
 			$titlePage = 'Life is a Show. ｜ ' . $titlePage;
             $descPage = "舞台はいま、ステージからライフへ。75年⽬のチャコット、いよいよ幕開けです。";
@@ -29,8 +45,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="title" content="Life is a Show. ｜ Chacott 75th Anniversary">
-    <meta name="description" content="舞台はいま、ステージからライフへ。75年⽬のチャコット、いよいよ幕開けです。">
+    <meta name="title" content="<?php echo $titlePage ?>">
+    <meta name="description" content="<?php echo $descPage ?>">
 
     <!-- @meta facebook -->
     <meta property="og:locale" content="ja_JP">

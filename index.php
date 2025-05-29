@@ -255,7 +255,7 @@
                         </div>
                     </div>
                 </div>
-                <div data-fadein>
+                <div data-fadein>	                
                     <?php require __DIR__ . '/components/footer.php' ?>
                 </div>
             </div>
