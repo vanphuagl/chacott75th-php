@@ -7,6 +7,61 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    height: var(--app-height);
+  }
+
+  // ===== fv =====
+  .fv {
+    &_container {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 70px;
+      align-items: center;
+      justify-content: center;
+      background-color: $main-bg-cl;
+      padding: 30px 110px 30px 65px;
+    }
+
+    &_right {
+      width: 100%;
+      height: auto;
+    }
+
+    &_thumb {
+      width: fit-content;
+      height: 76.765vh;
+      margin: 0 auto;
+      mix-blend-mode: multiply;
+
+      picture {
+        img {
+          object-fit: contain;
+        }
+      }
+    }
+
+    @include maxW(1023px) {
+      &_container {
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+        padding: 30px 5px;
+      }
+
+      &_thumb {
+        width: 100%;
+        height: auto;
+      }
+
+      &_logo {
+        svg {
+          width: 281.16px;
+          height: auto;
+        }
+      }
+    }
   }
 
   // ===== top =====
@@ -81,6 +136,10 @@
 
       &_logo {
         margin-top: 28px;
+
+        svg {
+          margin: 0 auto;
+        }
       }
 
       @include maxW(1023px) {
@@ -89,7 +148,7 @@
         &_inner {
           left: 51.5%;
           top: 48%;
-          
+
           p {
             font-size: 1.5rem;
           }

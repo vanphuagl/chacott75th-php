@@ -1,7 +1,7 @@
 "use strict";
 
 const init = () => {
-  console.clear();
+  // console.clear();
   // gsap config
   gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
   ScrollTrigger.clearScrollMemory("manual");
@@ -46,27 +46,13 @@ const initLoader = () => {
   const preloader = gsap.timeline({
     onComplete: () => {
       lenis.start();
-      //  scroll hidden header logo
-      ScrollTrigger.create({
-        // animation: gsap.fromTo(
-        //   "[data-logo-shrink]",
-        //   { opacity: 1 },
-        //   { opacity: 0, duration: 1, ease: Power4.easeInOut }
-        // ),
-        // trigger: "[data-top-chacott]",
-        // start: "top+=10% center",
-        // end: "top+=10% center",
-        // toggleActions: "play none reverse none",
-        // markers: true,
-      });
     },
   });
 
   if (sessionStorage.getItem("opening-displayed") === "true") {
     document.querySelector("[data-loading]").remove();
-    document.querySelector("[data-logo-shrink]").classList.add("is-done");
     lenis.start();
-    preloader.to("[data-logo-shrink], [data-header-logo], [data-scrolldown]", {
+    preloader.to("[data-fv], [data-scrolldown]", {
       opacity: 1,
     });
   } else {
@@ -83,25 +69,12 @@ const initLoader = () => {
         delay: 1,
         ease: Power4.easeOut,
       })
-      .to(
-        "[data-logo-shrink]",
-        {
-          opacity: 1,
-          duration: 0.5,
-          onComplete: () => {
-            gsap.to("[data-loading]", {
-              zIndex: "-100",
-            });
-          },
-        },
-        "-=0.7"
-      )
-      .to("[data-header-logo], [data-scrolldown]", {
-        opacity: 1,
-        duration: 1,
-        delay: 3.8,
-        ease: Power4.easeInOut,
-      });
+      .to("[data-loading]", {
+        opacity: 0,
+      }, "-=0.5")
+      .to("[data-loading]", {
+        zIndex: "-100",
+      })
   }
 };
 
@@ -129,22 +102,6 @@ const scrollEvents = () => {
     (context) => {
       let { isMobile } = context.conditions;
 
-      // scroll logo shrink
-      ScrollTrigger.create({
-        animation: gsap.from("[data-logo-shrink]", {
-          height: "100%",
-          width: "100%",
-          duration: 1,
-        }),
-        invalidateOnRefresh: true,
-        start: 100,
-        scrub: true,
-        trigger: ".top",
-        start: "top bottom",
-        endTrigger: ".top",
-        end: "top center",
-        markers: false,
-      });
       // scroll hide header logo and scrolldown
       ScrollTrigger.create({
         trigger: "[data-offset-top]",
@@ -153,14 +110,6 @@ const scrollEvents = () => {
         toggleActions: "play none reverse none",
         markers: false,
         onEnter: () => {
-          gsap.to("[data-header-logo]", {
-            opacity: 0,
-            duration: 0.2,
-          });
-          gsap.to("[data-logo-shrink] svg", {
-            y: 0,
-          });
-          // ===
           if (isMobile) {
             gsap.to("[data-scrolldown]", {
               opacity: 0,
@@ -169,14 +118,6 @@ const scrollEvents = () => {
           }
         },
         onEnterBack: () => {
-          gsap.to("[data-header-logo]", {
-            opacity: 1,
-            duration: 0.2,
-          });
-          gsap.to("[data-logo-shrink] svg", {
-            y: isMobile ? -30 : 0,
-          });
-          // ===
           if (isMobile) {
             gsap.to("[data-scrolldown]", {
               opacity: 1,
@@ -256,11 +197,10 @@ const addFadeOnElements = function (elements) {
     }
   }
 };
-window.addEventListener("scroll", function () {
-  addFadeOnElements(fadeInArray);
-});
-window.addEventListener("pageshow", function () {
-  addFadeOnElements(fadeInArray);
+"pageshow scroll".split(" ").forEach((evt) => {
+  window.addEventListener(evt, function () {
+    addFadeOnElements(fadeInArray)
+  });
 });
 
 // ===== scroll fixed section footer =====
@@ -288,7 +228,7 @@ const hideLogoShrink = gsap.timeline({
   },
 });
 
-let panels = gsap.utils.toArray("section");
+let panels = gsap.utils.toArray("[data-section]");
 panels.pop(); // get rid of the last one (don't need it in the loop)
 panels.forEach((panel, i) => {
   let tl = gsap.timeline({
@@ -358,7 +298,7 @@ document.addEventListener("click", function (e) {
 });
 
 // ===== click hash =====
-function handleHash() {
+const handleHash = function () {
   const hash = window.location.hash;
   if (hash) {
     ScrollTrigger.refresh();
@@ -375,14 +315,14 @@ function handleHash() {
               window.location.pathname + window.location.search
             );
             gsap.to(
-              "[data-logo-shrink], [data-header-logo], [data-scrolldown]",
+              "[data-scrolldown]",
               {
                 opacity: 0,
               }
             );
             setTimeout(() => {
               document.body.classList.remove("fadeout");
-            }, 200);
+            }, 100);
           },
         });
       }
@@ -391,10 +331,8 @@ function handleHash() {
     document.body.classList.remove("fadeout");
   }
 }
-["pageshow", "load"].forEach(function (evt) {
-  window.addEventListener(evt, function () {
-    handleHash();
-  });
+"pageshow load".split(" ").forEach((evt) => {
+  window.addEventListener(evt, handleHash);
 });
 
 // ===== details page =====
@@ -419,4 +357,4 @@ if (document.getElementById("detailspage")) {
 }
 
 // DOMContentLoaded
-window.addEventListener("load", init);
+window.addEventListener("pageshow", init);
